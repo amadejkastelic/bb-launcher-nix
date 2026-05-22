@@ -22,6 +22,8 @@ jobs:
           nix_conf: |
             keep-env-derivations = true
             keep-outputs = true
+            extra-substituters = https://amadejkastelic.cachix.org
+            extra-trusted-public-keys = amadejkastelic.cachix.org-1:EiQfTbiT0UKsynF4q3nbNYjNH6/l7zuhrNkQTuXmyOs=
 
       - name: Restore and save Nix store
         uses: nix-community/cache-nix-action@v6
@@ -40,7 +42,7 @@ jobs:
           name: amadejkastelic
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - run: ${{ inputs.command }}
+      - run: ${{ inputs.command }} --accept-flake-config
 
       - name: Push build outputs to Cachix
         run: |

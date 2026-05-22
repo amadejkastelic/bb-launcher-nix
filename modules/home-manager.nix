@@ -8,7 +8,7 @@
 with lib;
 
 let
-  cfg = config.programs.bb-bloodborne;
+  cfg = config.programs.bb-launcher;
 
   shadps4Pkg =
     if cfg.wrapperCommand != null then
@@ -57,7 +57,7 @@ let
 in
 
 {
-  options.programs.bb-bloodborne = {
+  options.programs.bb-launcher = {
     enable = mkEnableOption "Bloodborne via BB Launcher + shadPS4";
 
     gameInstallPath = mkOption {

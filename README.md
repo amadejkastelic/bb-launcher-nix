@@ -1,17 +1,17 @@
-# bloodborne-nix
+# bb-launcher-nix
 
 Bloodborne on Linux via [shadPS4](https://github.com/shadps4-emu/shadPS4) + [BB Launcher](https://github.com/rainmakerv3/BB_Launcher), packaged for Nix/NixOS.
 
 ## Quick start
 
 ```bash
-nix run github:amadejkastelic/bloodborne-nix
+nix run github:amadejkastelic/bb-launcher-nix
 ```
 
 Skip the GUI and launch directly:
 
 ```bash
-nix run github:amadejkastelic/bloodborne-nix -- -n
+nix run github:amadejkastelic/bb-launcher-nix -- -n
 ```
 
 ## What's included
@@ -20,14 +20,14 @@ nix run github:amadejkastelic/bloodborne-nix -- -n
 |---------|-------------|
 | `bb-launcher` | BB Launcher — Bloodborne launcher/mod manager for shadPS4 |
 | `shadps4` | shadPS4 PS4 emulator with audio and Wayland fixes |
-| `default` | `bb-launcher` (includes shadps4 in PATH) |
+| `default` | `bb-launcher` |
 
 ## NixOS / home-manager
 
 Add as a flake input:
 
 ```nix
-inputs.bloodborne-nix.url = "github:amadejkastelic/bloodborne-nix";
+inputs.bb-launcher.url = "github:amadejkastelic/bb-launcher-nix";
 ```
 
 ### As a home-manager module (recommended)
@@ -35,9 +35,9 @@ inputs.bloodborne-nix.url = "github:amadejkastelic/bloodborne-nix";
 If you use home-manager, import the module to get both packages plus managed config:
 
 ```nix
-imports = [ inputs.bloodborne-nix.homeManagerModules.default ];
+imports = [ inputs.bb-launcher.homeManagerModules.default ];
 
-programs.bloodborne = {
+programs.bb-launcher = {
   enable = true;
   gameInstallPath = "/path/to/CUSA03173";
 };
@@ -47,7 +47,7 @@ programs.bloodborne = {
 
 ```nix
 environment.systemPackages = [
-  inputs.bloodborne-nix.packages.x86_64-linux.bb-launcher
+  inputs.bb-launcher.packages.x86_64-linux.bb-launcher
 ];
 ```
 
