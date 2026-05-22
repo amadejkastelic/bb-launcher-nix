@@ -1,3 +1,5 @@
+{ packages }:
+
 {
   config,
   lib,
@@ -25,7 +27,7 @@ let
 
   shadps4Exe = lib.getExe shadps4Pkg;
 
-  bbLauncherPkg = pkgs.callPackage ../pkgs/bb-launcher { };
+  bbLauncherPkg = packages.x86_64-linux.bb-launcher;
 
   launcherConfig = generators.toINI { } {
     Backups = {
@@ -77,7 +79,7 @@ in
     shadps4 = {
       package = mkOption {
         type = types.package;
-        default = pkgs.callPackage ../pkgs/shadps4 { };
+        default = packages.x86_64-linux.shadps4;
         description = "shadPS4 package to use.";
       };
     };

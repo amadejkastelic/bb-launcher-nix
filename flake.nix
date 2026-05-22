@@ -74,6 +74,8 @@
         bb-launcher = prev.callPackage ./pkgs/bb-launcher { };
       };
 
-      homeManagerModules.default = import ./modules/home-manager.nix;
+      homeManagerModules.default = import ./modules/home-manager.nix {
+        packages = self.packages;
+      };
     };
 }
