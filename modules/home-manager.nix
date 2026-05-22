@@ -29,7 +29,9 @@ let
 
   bbLauncherPkg = packages.x86_64-linux.bb-launcher;
 
-  launcherConfig = generators.toINI { } {
+  tomlFormat = pkgs.formats.toml { };
+
+  launcherConfig = tomlFormat.generate "LauncherSettings.toml" {
     Backups = {
       BackupNumber = cfg.settings.backupNumber;
       BackupInterval = cfg.settings.backupInterval;
@@ -128,6 +130,6 @@ in
       bbLauncherPkg
     ];
 
-    xdg.dataFile."BBLauncher/LauncherSettings.toml".text = launcherConfig;
+    xdg.dataFile."BBLauncher/LauncherSettings.toml".source = launcherConfig;
   };
 }
