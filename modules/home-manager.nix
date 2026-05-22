@@ -10,11 +10,22 @@ with lib;
 let
   cfg = config.programs.bb-bloodborne;
 
-  shadps4Pkg = cfg.shadps4.package;
-
-  bbLauncherPkg = pkgs.callPackage ../pkgs/bb-launcher { };
+  shadps4Pkg =
+    if cfg.wrapperCommand != null then
+      pkgs.writeShellScriptBin "shadps4" ''
+        exec ${cfg.wrapperCommand} ${lib.getExe cfg.shadps4.package} "$@"
+      ''
+      // {
+        meta = cfg.shadps4.package.meta // {
+          mainProgram = "shadps4";
+        };
+      }
+    else
+      cfg.shadps4.package;
 
   shadps4Exe = lib.getExe shadps4Pkg;
+
+  bbLauncherPkg = pkgs.callPackage ../pkgs/bb-launcher { };
 
   launcherConfig = generators.toINI { } {
     Backups = {
@@ -54,6 +65,13 @@ in
       default = null;
       example = "/path/to/CUSA03173";
       description = "Path to Bloodborne game dump.";
+    };
+
+    wrapperCommand = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      example = "gamemoderun mangohud";
+      description = "Command to prefix shadPS4 with (e.g. gamemoderun, mangohud).";
     };
 
     shadps4 = {
