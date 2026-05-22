@@ -51,7 +51,6 @@
   vulkan-loader,
   vulkan-memory-allocator,
   wayland,
-  wayland-protocols,
   wayland-scanner,
   xbyak,
   xxhash,
@@ -189,6 +188,8 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
     libGL
     mesa
   ];
+
+  passthru.updateScript = ./update.sh;
 
   meta = {
     description = "Early in development PS4 emulator";

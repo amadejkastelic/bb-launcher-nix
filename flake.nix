@@ -29,8 +29,8 @@
       self,
       nixpkgs,
       flake-utils,
-      home-manager,
       pre-commit-hooks,
+      ...
     }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (
       system:
