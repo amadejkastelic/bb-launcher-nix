@@ -27,4 +27,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet || git add -A && git commit -m "packages: update" && git push
+          git diff --quiet && echo "No updates" && exit 0
+          git add -A
+          git commit -m "packages: update"
+          git push
