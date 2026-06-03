@@ -1,0 +1,20 @@
+diff --git a/settings/user_manager.cpp b/settings/user_manager.cpp
+index 31700d8..6e685f6 100644
+--- a/settings/user_manager.cpp
++++ b/settings/user_manager.cpp
+@@ -91,6 +91,7 @@ static void CheckAndMigrateSaves(TransferOption option) {
+                 break;
+             default:
+                 // UNREACHABLE();
++                break;
+             }
+         } catch (std::exception const& e) {
+             // UNREACHABLE_MSG("Error while migrating saves: {}", e.what());
+@@ -164,6 +165,7 @@ static void CheckAndMigrateTrophies(TransferOption option) {
+                         break;
+                     default:
+                         // UNREACHABLE();
++                        break;
+                     }
+                 }
+             }
