@@ -12,6 +12,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
 
       - uses: cachix/install-nix-action@v31
         with:
@@ -29,5 +31,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git diff --quiet && echo "No updates" && exit 0
           git add -A
-          git commit -m "packages: update" -m "Co-authored-by: amadejkastelic <amadejkastelic@users.noreply.github.com>"
+          git commit -m "packages: update"
           git push
