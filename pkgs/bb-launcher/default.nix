@@ -30,8 +30,6 @@ stdenv.mkDerivation (finalAttrs: {
     fetchSubmodules = true;
   };
 
-  patches = [ ./fix-empty-default-case.patch ];
-
   postPatch = ''
     substituteInPlace settings/updater/BuildInfo.cpp.in \
       --replace-fail @GIT_REV@ 46fb13ff \
