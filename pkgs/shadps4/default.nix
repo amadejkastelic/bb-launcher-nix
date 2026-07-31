@@ -61,13 +61,13 @@
 
 gcc14Stdenv.mkDerivation (finalAttrs: {
   pname = "shadps4";
-  version = "0.16.0";
+  version = "0.17.0";
 
   src = fetchFromGitHub {
     owner = "shadps4-emu";
     repo = "shadPS4";
     tag = "v.${finalAttrs.version}";
-    hash = "sha256-qN0tZgDU/xka0GAvljvdVofr1wfASunkTkmG7FXnLfk=";
+    hash = "sha256-y/5dLO1icNoWnJihifvDhfOtF7tvQ1j1sffC9Pa2iUc=";
     fetchSubmodules = true;
 
     leaveDotGit = true;
