@@ -23,7 +23,7 @@ jobs:
         run: ./pkgs/bb-launcher/update.sh
 
       - name: Update shadPS4
-        run: nix run nixpkgs#nix-update -- --flake --use-update-script shadps4
+        run: nix run nixpkgs#nix-update -- --flake --version-regex 'v\.(.*)' shadps4
 
       - name: Commit and push
         run: |
