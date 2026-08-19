@@ -68,13 +68,13 @@ let
 in
 clangStdenv.mkDerivation (finalAttrs: {
   pname = "shadps4";
-  version = "0.17.0";
+  version = "0.18.0";
 
   src = fetchFromGitHub {
     owner = "shadps4-emu";
     repo = "shadPS4";
     tag = "v.${finalAttrs.version}";
-    hash = "sha256-lNUc1nhubGbs4j/cM+/psbtrL1T4JN7ywqN5aQzdby4=";
+    hash = "sha256-0N33VHbebmpU7//cKX0o05B1zGebE3anVnq+zrmKbJc=";
 
     postCheckout = ''
       git -C "$out" rev-parse --short=8 HEAD > $out/COMMIT
