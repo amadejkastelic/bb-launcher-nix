@@ -38,6 +38,7 @@
   pipewire,
   pkg-config,
   pugixml,
+  python3,
   rapidjson,
   renderdoc,
   robin-map,
@@ -58,23 +59,15 @@
   withRpc ? true,
 }:
 
-let
-  abseilCppSrc = fetchFromGitHub {
-    owner = "abseil";
-    repo = "abseil-cpp";
-    tag = "20250512.1";
-    hash = "sha256-eB7OqTO9Vwts9nYQ/Mdq0Ds4T1KgmmpYdzU09VPWOhk=";
-  };
-in
 clangStdenv.mkDerivation (finalAttrs: {
   pname = "shadps4";
-  version = "0.18.0";
+  version = "0.19.0";
 
   src = fetchFromGitHub {
     owner = "shadps4-emu";
     repo = "shadPS4";
     tag = "v.${finalAttrs.version}";
-    hash = "sha256-0N33VHbebmpU7//cKX0o05B1zGebE3anVnq+zrmKbJc=";
+    hash = "sha256-NL6ZNkwuYLgeUdOnfjVPu0WlZh0fCaf1tEdYzU2ZKgQ=";
 
     postCheckout = ''
       git -C "$out" rev-parse --short=8 HEAD > $out/COMMIT
@@ -89,11 +82,12 @@ clangStdenv.mkDerivation (finalAttrs: {
         discord-rpc \
         hwinfo \
         openal-soft \
-        dear_imgui \
+        imgui \
         LibAtrac9 \
         aacdec/fdk-aac \
         spdlog \
         libressl \
+        abseil-cpp \
         ImGuiFileDialog \
         protobuf \
         zarchive \
@@ -114,6 +108,7 @@ clangStdenv.mkDerivation (finalAttrs: {
     cmake
     pkg-config
     makeWrapper
+    python3
   ];
 
   buildInputs = [
@@ -170,7 +165,6 @@ clangStdenv.mkDerivation (finalAttrs: {
     (lib.cmakeBool "ENABLE_TESTS" false)
     (lib.cmakeBool "ENABLE_UPDATER" false)
     (lib.cmakeBool "ENABLE_SYSTEM_LIBRARIES" true)
-    (lib.cmakeFeature "FETCHCONTENT_SOURCE_DIR_ABSL" "${abseilCppSrc}")
   ];
 
   # Still in development, help with debugging
