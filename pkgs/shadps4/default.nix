@@ -61,13 +61,13 @@
 
 clangStdenv.mkDerivation (finalAttrs: {
   pname = "shadps4";
-  version = "0.19.0";
+  version = "0.20.0";
 
   src = fetchFromGitHub {
     owner = "shadps4-emu";
     repo = "shadPS4";
     tag = "v.${finalAttrs.version}";
-    hash = "sha256-NL6ZNkwuYLgeUdOnfjVPu0WlZh0fCaf1tEdYzU2ZKgQ=";
+    hash = "sha256-D2Rw//eugegf2/ErpSI0U/4WifPXlxdkkmwbehYHRkw=";
 
     postCheckout = ''
       git -C "$out" rev-parse --short=8 HEAD > $out/COMMIT
